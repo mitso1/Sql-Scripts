@@ -1,3 +1,5 @@
+-- TABLE: course_layout
+
 CREATE TABLE course_layout (
     course_code CHAR(10) PRIMARY KEY,
     course_name VARCHAR(50),
@@ -118,7 +120,7 @@ CREATE TABLE settings (
 CREATE OR REPLACE FUNCTION limit_employee_course_instances()
 RETURNS TRIGGER AS $$
 DECLARE
-    new_period INT;            -- study period of the activity being assigned
+    new_period study_period_enum;            -- study period of the activity being assigned
     new_instance INT;          -- course_instance_id for this activity
     instance_count INT;        -- number of distinct course instances already assigned
     max_allowed_instances INT; -- max number of course instances allowed per employee
