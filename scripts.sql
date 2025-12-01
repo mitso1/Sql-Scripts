@@ -1,3 +1,14 @@
+--DO $$ 
+--DECLARE 
+--    r RECORD;
+--BEGIN 
+--    FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
+--        EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
+--    END LOOP; 
+--END $$; 
+
+--DROP TYPE study_period_enum CASCADE;
+
 -- TABLE: course_layout
 
 CREATE TABLE course_layout (
@@ -202,3 +213,4 @@ CREATE TRIGGER tgr_students_in_range
 BEFORE INSERT ON course_instance
 FOR EACH ROW
 EXECUTE FUNCTION students_in_range();
+
