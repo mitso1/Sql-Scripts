@@ -6,15 +6,21 @@ INSERT INTO job_title (title) VALUES
   ('TA'),
   ('Researcher');
 
-
+--Old departments population script
 -- DEPARTMENTS
-INSERT INTO department (department_name, manager) VALUES
-  ('Admin', 'Zahir Conrad'),
-  ('Electronics', 'Martina Tillman'),
-  ('Data Science', 'Garrison Grant'),
-  ('HR', 'Kuame Mann');
+-- INSERT INTO department (department_name, manager) VALUES
+--   ('Admin', 'Zahir Conrad'),
+--   ('Electronics', 'Martina Tillman'),
+--   ('Data Science', 'Garrison Grant'),
+--   ('HR', 'Kuame Mann');
 
-
+INSERT INTO department (department_name)
+VALUES
+  ('Data Science'),
+  ('Mathematics'),
+  ('Electronics'),
+  ('HR'),
+  ('Admin');
 -- SETTINGS
 INSERT INTO settings (settings_row, max_cinstances_per_employee)
 VALUES (1, 4);
@@ -255,8 +261,34 @@ INSERT INTO employee (skill_set, salary, job_title_id, department_name, personal
   ('Epic, Good at data',                 40000,  5, 'Admin',        '200012310098'),
   ('Good at party, Good at data, Epic',  45000,  5, 'Electronics',  '200012310099'),
   ('Based, Good at data',                55000,  2, 'Electronics',  '200012310100');
+-- updates since feedback
+UPDATE employee
+SET supervisor_id = 1
+WHERE employment_id IN (2, 3, 4, 5);
 
+UPDATE employee
+SET supervisor_id = 3
+WHERE employment_id IN (6, 7, 8);
 
+UPDATE department
+SET manager_employment_id = 1
+WHERE department_name = 'Admin';
+
+UPDATE department
+SET manager_employment_id = 3
+WHERE department_name = 'Data Science';
+
+UPDATE department
+SET manager_employment_id = 2
+WHERE department_name = 'Electronics';
+
+UPDATE department
+SET manager_employment_id = 50
+WHERE department_name = 'HR';
+
+UPDATE department
+SET manager_employment_id = 10
+WHERE department_name = 'Mathematics';
 -- PLANNED ACTIVITY
 -- We create planned activities referencing the 6 course_instances (IDs 1..6).
 -- Use explicit column list so order doesn't matter.
