@@ -214,3 +214,13 @@ BEFORE INSERT ON course_instance
 FOR EACH ROW
 EXECUTE FUNCTION students_in_range();
 
+-- Improvement to database according to feedback
+ALTER TABLE employee
+ADD COLUMN supervisor_id INT;
+
+ALTER TABLE employee
+ADD CONSTRAINT fk_employee_supervisor
+FOREIGN KEY (supervisor_id)
+REFERENCES employee(employment_id)
+ON DELETE SET NULL;
+
