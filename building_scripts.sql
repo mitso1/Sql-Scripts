@@ -214,7 +214,7 @@ BEFORE INSERT ON course_instance
 FOR EACH ROW
 EXECUTE FUNCTION students_in_range();
 
--- Improvement to database according to feedback
+-- Improvements to database according to feedback
 ALTER TABLE employee
 ADD COLUMN supervisor_id INT;
 
@@ -224,3 +224,14 @@ FOREIGN KEY (supervisor_id)
 REFERENCES employee(employment_id)
 ON DELETE SET NULL;
 
+ALTER TABLE department
+DROP COLUMN manager;
+
+ALTER TABLE department
+ADD COLUMN manager_employment_id INT;
+
+ALTER TABLE department
+ADD CONSTRAINT fk_department_manager
+FOREIGN KEY (manager_employment_id)
+REFERENCES employee(employment_id)
+ON DELETE SET NULL;
